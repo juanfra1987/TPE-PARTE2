@@ -1,0 +1,51 @@
+class ConsultorioVista {
+    function renderHeader(){
+        $header = '<html>
+                        <head>
+                        </head>
+                        <body>
+                        <h1>Consultorios del Parque</h1>';
+                        
+        echo $header;
+    }
+    
+    function renderLogueo(){
+        $formulario = '<form action="registrar.php" method="post">
+                            
+                            <label>Usuario: <input type="text" name="titulo"></label>
+                            <label>Contraseña: <input type="text" name="descripcion"></label>  
+                            <input type="submit" name="Iniciar">
+                        </form>';
+        echo $formulario;
+    }
+    function renderDoctores($doctores){
+        echo ('<table border="1">');
+        echo ('<tr><th>Nombre</th>');
+        echo ('<th>Especialidad</th><th>Modificar</th>');
+        echo ('<th>Borrar</th></tr>');
+        foreach ($doctores as $doctor) {
+            echo('<tr>');
+            $nombre = $doctor['nombre'];
+            $especialidad = $doctor['especialidad'];
+            $modificar = $doctor['modificar'];
+            $borrar = $doctor['borrar'];
+    
+            echo("<td>$nombre</td>");
+            echo("<td>$especialidad</td>");
+ //           echo('<td><a href="modificar.php?id='.$id.'">modificar</a></td>');
+  //          echo('<td><a href="borrar.php?id='.$id.'">Borrar</a></td>');
+            echo('</tr>');
+        }
+    }
+    function renderFooter(){
+        $footer = '</body></html>';
+        echo $footer;
+    }    
+
+    function renderConsultorio($doctores){
+        $this->renderHeader();
+        $this->renderDoctores($doctores);
+        $this->renderFooter();
+    }
+   
+}
