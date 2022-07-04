@@ -9,21 +9,28 @@ class AuthHelpers
         }
     }
 
-    function loguearUsuario($nombre)
-    {       
-        $_SESSION["logueado"] = true;
-        $_SESSION["username"] = $nombre;    
+    function loguearUsuario($nombre,$permiso)
+    {    
+        $_SESSION["username"] = $nombre;   
+        $_SESSION["permiso"] = $permiso;
+    
     }
 
-    //devuelve si el usuario esta logueado o no
+    //devuelve si el usuario esta logueado el tipo de permiso o no
     function estaLogueado()
     {   
-        if (isset($_SESSION["logueado"]) && ($_SESSION["logueado"]==true)){
+        if (isset($_SESSION["permiso"]) && ($_SESSION["permiso"]!=0)){
             return true;  
         }
         return false;
     } 
-
+    function estaRegistrado()
+    {   
+        if (isset($_SESSION["permiso"]) && ($_SESSION["permiso"]!=0)){
+            return true;  
+        }
+        return false;
+    } 
     //cierra la sesion
     function cerrarSession()
     {

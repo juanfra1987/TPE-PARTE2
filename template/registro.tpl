@@ -12,19 +12,20 @@
 </head>
 <div class="container">
 <div class="alineacion">
-
     <body>
         <header>
             {include file="../template/header.tpl"}
         </header>
         <section>
-            {if !($logueado)}
-                 {include file="../template/login.tpl"}
-            {else}
+            {if (isset($logueado)) && !($logueado)}
                 {include file="../template/usuarioLogueado.tpl"}
+            {else}    
+                {include file="../template/registrar.tpl"}
             {/if}
+
         </section>
         <nav>{include file="../template/barra.tpl"}</nav>
+
         <aside>
             <img src="{$BASE_URL}imagenes/medico.jpg" alt="medico">
         </aside>

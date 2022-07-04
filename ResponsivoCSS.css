@@ -61,4 +61,21 @@ footer {
         grid-template-rows: 1fr 1fr 4fr 1fr;
         grid-template-areas: "header header header header section section" "nav nav nav nav nav nav" "aside aside aside aside article article" "footer footer footer footer footer footer";
     }
+
+}
+.barra{
+    display: flex;
+    list-style: none;
+    width: 100%;
+    background-color: aquamarine; 
+    color: rgb(255, 60, 0);
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+}
+li{
+    padding: 0 30px;
+    border: 0 25px;
+}
+
+.barramenu:hover{background-color: rgb(9, 126, 87);  
 }

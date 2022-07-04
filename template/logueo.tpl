@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{$BASE_URL}ResponsivoCSS.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Home</title>
 </head>
 <div class="container">
@@ -18,13 +17,14 @@
             {include file="../template/header.tpl"}
         </header>
         <section>
-            {if !($logueado)}
-                 {include file="../template/login.tpl"}
-            {else}
-                {include file="../template/usuarioLogueado.tpl"}
-            {/if}
+        {if (isset($logueado)) && !($logueado)}
+            {include file="../template/login.tpl"}
+       {else}
+           {include file="../template/usuarioLogueado.tpl"}
+       {/if}
         </section>
         <nav>{include file="../template/barra.tpl"}</nav>
+
         <aside>
             <img src="{$BASE_URL}imagenes/medico.jpg" alt="medico">
         </aside>

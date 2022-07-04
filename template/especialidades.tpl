@@ -20,12 +20,10 @@
             {include file="../template/header.tpl"}
         </header>
         <section>
-
             {if !($logueado)}
                 {include file="../template/login.tpl"}
             {else}
                 {include file="../template/usuarioLogueado.tpl"}
-
             {/if}
         </section>
         <nav>

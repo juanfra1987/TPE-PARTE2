@@ -25,4 +25,20 @@ class UsuariosModel extends Model
         $usuarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $usuarios;
     }
+    function registrarUsuario($usuario,$passhash, $email, $id_permiso_fk)
+    {
+        $conexion = $this->getConexion();
+        $peticion = 'INSERT INTO usuarios (usuario, password_usuario, email, id_permiso_fk) VALUES (?,?,?,?)';
+        $sentencia = $conexion->prepare($peticion);
+        $sentencia->execute([$usuario,$passhash, $email, $id_permiso_fk]); 
+    }
+
+    function obtenerUsuarioNombre($nombre){
+        $conexion = $this->getConexion();
+        $peticion = 'select * FROM usuarios WHERE usuario=?';
+        $sentencia = $conexion->prepare($peticion);
+        $sentencia->execute($nombre);
+        $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $usuario;
+    }
 }

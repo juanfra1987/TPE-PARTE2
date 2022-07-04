@@ -8,6 +8,7 @@ require_once 'controlador/EspecialidadesControler.php';
 require_once 'controlador/homeControler.php';
 
 $logueado = new AuthHelpers();
+$registro = new UsuariosControlador();
 $profesionales = new ProfesionalesControlador();
 $usuarios = new UsuariosControlador($logueado);
 $especialidades = new EspecialidadesControlador();
@@ -50,7 +51,6 @@ switch ($parametros[0]) {
             }
             break;
         }
-
     case 'loguearse': {
             $usuarios->login();
             $desde = $parametros[1];
@@ -70,7 +70,15 @@ switch ($parametros[0]) {
             }
             break;
         }
-
+    case 'registrar': {
+        $logueado->cerrarSession();
+        $registro->mostarRegistrar();
+         }
+        break;
+    case 'registro': {   
+            $registro->registro();
+            break;
+        }
     case 'eliminar': {
             $desde = $parametros[1];
             switch ($desde) {
