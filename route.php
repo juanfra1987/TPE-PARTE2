@@ -8,9 +8,10 @@ require_once 'controlador/EspecialidadesControler.php';
 require_once 'controlador/homeControler.php';
 
 $logueado = new AuthHelpers();
+$permiso= new AuthHelpers();
 $registro = new UsuariosControlador();
 $profesionales = new ProfesionalesControlador();
-$usuarios = new UsuariosControlador($logueado);
+$usuarios = new UsuariosControlador($logueado,$permiso);
 $especialidades = new EspecialidadesControlador();
 $home = new homeControlador();
 
@@ -32,6 +33,9 @@ switch ($parametros[0]) {
     case 'especialidades':
         $especialidades->mostrarEspecialidades();
         break;
+    case 'usuarios':
+        $registro->mostrarUsuarios();
+    break;     
     case 'logout': {
             $logueado->cerrarSession();
             $desde = $parametros[1];
@@ -44,15 +48,17 @@ switch ($parametros[0]) {
                     break;
                 case 'especialidades':
                     $especialidades->mostrarEspecialidades();
-                    break;
                 default:
-                    echo "Usted no esta logueado";
+                   $home->mostrarHome();
                     break;
             }
             break;
         }
     case 'loguearse': {
             $usuarios->login();
+            $permiso->esAdministrador();
+            var_dump($permiso);
+            
             $desde = $parametros[1];
             switch ($desde) {
                 case 'doctores':
@@ -63,7 +69,7 @@ switch ($parametros[0]) {
                     break;
                 case 'especialidades':
                     $especialidades->mostrarEspecialidades();
-                    break;
+                    break;   
                 default:
                     echo "Usted no esta logueado";
                     break;
@@ -72,7 +78,7 @@ switch ($parametros[0]) {
         }
     case 'registrar': {
         $logueado->cerrarSession();
-        $registro->mostarRegistrar();
+        $registro->mostarRegistro();
          }
         break;
     case 'registro': {   
@@ -91,6 +97,9 @@ switch ($parametros[0]) {
                     $especialidades->mostrarEspecialidades();
                     break;
                 default:
+                case 'usuarios':
+                    $usuarios->eliminarUsuario($parametros[2]); 
+                    $usuarios->mostrarUsuarios();
                     break;
             }
             break;
@@ -105,6 +114,8 @@ switch ($parametros[0]) {
                 case 'especialidades':
                     $especialidades->actualizarEspecialidad($parametros[2]);
                     break;
+                case 'usuarios':
+                    $usuarios->actualizarUsuario($parametros[2]); 
                 default:
                     break;
             }
@@ -130,6 +141,8 @@ switch ($parametros[0]) {
                 case 'especialidades':
                     $especialidades->obtenerDatosEspecialidad($parametros[2]);
                     break;
+                case 'usuarios':
+                    $usuarios->obtenerDatosUsuario($parametros[2]);     
                 default:
                     break;
             }

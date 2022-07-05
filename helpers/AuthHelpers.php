@@ -1,4 +1,7 @@
 <?php
+
+use Symfony\Component\VarExporter\Internal\Values;
+
 class AuthHelpers
 {
 
@@ -16,7 +19,7 @@ class AuthHelpers
     
     }
 
-    //devuelve si el usuario esta logueado el tipo de permiso o no
+    //devuelve si el usuario esta logueado o no
     function estaLogueado()
     {   
         if (isset($_SESSION["permiso"]) && ($_SESSION["permiso"]!=0)){
@@ -24,13 +27,15 @@ class AuthHelpers
         }
         return false;
     } 
-    function estaRegistrado()
+    
+    function esAdministrador()
     {   
-        if (isset($_SESSION["permiso"]) && ($_SESSION["permiso"]!=0)){
-            return true;  
+        if (isset($_SESSION["permiso"]) && ($_SESSION["permiso"]!=1)){
+            return false;
         }
-        return false;
+        return true;
     } 
+
     //cierra la sesion
     function cerrarSession()
     {

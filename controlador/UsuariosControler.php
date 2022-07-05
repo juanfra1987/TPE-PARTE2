@@ -1,4 +1,7 @@
 <?php
+
+use PhpMyAdmin\Server\Select;
+
 require_once 'modelo/UsuariosModelo.php';
 require_once 'controlador/ProfesionalesControler.php';
 require_once 'vista/UsuariosVista.php';
@@ -40,10 +43,14 @@ class UsuariosControlador
                 return $this->helper->estaLogueado();
             }
         }  
-    function mostarRegistrar(){
+
+    //muestra en el formulario de registrarse    
+    function mostarRegistro(){
             $consultaPermiso = $this->modPermiso->consultarPermisos();
             $this->vista->renderRegistro($consultaPermiso);
         }
+
+    // manda a registrar al usuario nuevo    
     function registro(){
             $existe = $this->modelo->obtenerUsuarioPorNombre($_POST['usuario']);
             if (!$existe){
@@ -53,8 +60,43 @@ class UsuariosControlador
                 $id_permiso_fk=$_POST['id_permiso_fk'];
                 $this->modelo->registrarUsuario($usuario,$passHash,$email,$id_permiso_fk);
                 $this->helper->loguearUsuario($usuario,$id_permiso_fk); 
-              
             }
             $this->vista->renderLogueo(); 
-    }      
+    } 
+    
+    //
+    // lleva los datos para la modificacion de usuarios por el administrador
+    function mostrarUsuarios()  
+    {
+        $permisos = $this->modPermiso->consultarPermisos();
+        $listaUsuarios = $this->modelo->obtenerUsuarios();
+        $this->vista->renderUsuarios($permisos,$listaUsuarios);
+    } 
+   
+    //actualiza el usuario que se modifico y renderiza
+    function actualizarUsuario($id)
+    {
+        $usuario = $_POST['nombre'];
+        var_dump($_POST['permiso']);
+        $id_permiso_fk = $_POST['permiso'];
+        $this->modelo->modificarUsuario($id,$usuario,$id_permiso_fk);
+        $this->mostrarUsuarios();
+    }
+
+    //elimina el usuario seleccionado
+    function eliminarUsuario($id)
+    {
+        $this->modelo->eliminarRegistro($id);
+    }
+
+     //levanta los datos del usuario el cual se desea modificar
+     function obtenerDatosUsuario($id)
+     {
+         $consultaPermisos = $this->modPermiso->consultarPermisos();
+         $listaUsuarios = $this->modelo->obtenerUsuarios();
+         $consultaUsuariosPermiso = $this->modelo->consultarUsuarioPermiso();
+         $consulta = $this->modelo->obtenerUsuario($id);
+         $this->vista->renderModificacionUsuario($consulta, $consultaUsuariosPermiso, $consultaPermisos,$listaUsuarios);
+     }
+
     }
