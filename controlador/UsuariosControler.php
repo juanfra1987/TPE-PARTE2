@@ -77,7 +77,6 @@ class UsuariosControlador
     function actualizarUsuario($id)
     {
         $usuario = $_POST['nombre'];
-        var_dump($_POST['permiso']);
         $id_permiso_fk = $_POST['permiso'];
         $this->modelo->modificarUsuario($id,$usuario,$id_permiso_fk);
         $this->mostrarUsuarios();
