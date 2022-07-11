@@ -1,15 +1,13 @@
-"use strict"
-
-let app = new Vue({
-    el: "#template-vue-comentarios",
+const app = new Vue({
+    el: "#app",
     data: {
-        subtitle: "Estos comentarios se renderizan desde el cliente usando Vue.js",
+        titulo: "Estos comentarios se renderizan desde el cliente usando Vue.js",
         comentarios: [] 
     }
-});
+})
 
 function obtenerComentarios() {
-    fetch("api/obtenerComentarios")
+    fetch('api/obtenerComentarios')
     .then(response => response.json())
     .then(comentarios => {
         app.comentarios = comentarios; // similar a $this->smarty->assign("tasks", $tasks)
@@ -21,6 +19,7 @@ obtenerComentarios();
 
 
 document.querySelector("#form-comentarios").addEventListener('submit', agregarComentario);
+
 function agregarComentario(e) {
     e.preventDefault();
     

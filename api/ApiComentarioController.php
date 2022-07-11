@@ -5,6 +5,7 @@ require_once('api/ApiView.php');
 class ApiComentarioController
 {
     private $model;
+    private $view;
     private $data;
 
     public function __construct()
@@ -26,8 +27,6 @@ class ApiComentarioController
     {
         if (!empty($params)) {
             $id = $params[':id'];
-            var_dump($id);
-            die;
             $comentarios = $this->model->obtenerComentarios($id);
             $this->view->response($comentarios, "200");
         } else {
