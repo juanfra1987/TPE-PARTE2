@@ -28,4 +28,12 @@ class ProfesionalesVista
         $plantilla->assign('doctores', $doctores);
         $plantilla->display('template/profesionales.tpl');
     }
+
+    function renderMostrarPerfilProf($consulta){
+        $plantilla = new Smarty();
+        $plantilla->assign('BASE_URL', BASE_URL);
+        $plantilla->assign('consulta', $consulta);
+        $plantilla->display('template/perfilProfesional.tpl');
+    }
+
 }

@@ -67,4 +67,14 @@ class ProfesionalesControlador
     {
         $this->modeloProf->eliminarRegistro($id);
     }
+    // obtiene el perfil del profesional por el Id
+   
+    function obtenerPerfil($id){
+       
+        $consulta = $this->modeloProf->consultarProfesionalEspec($id); 
+        $this->vistaProf->renderMostrarPerfilProf($consulta);
+
+    }
+
+
 }

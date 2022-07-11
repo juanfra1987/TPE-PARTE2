@@ -13,7 +13,7 @@
     </tr>
     {foreach $doctores item=doctor}
         <tr>
-            <td>{$doctor.nombre_prof}</td>
+            <td><a href="{$BASE_URL}perfil/{$doctor.id_prof}">{$doctor.nombre_prof}</td>
             <td>{$doctor.nombre_espec}</td>
             <td>{$doctor.telefono}</td>
             <td>{$doctor.dias_atencion}</td>

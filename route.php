@@ -148,7 +148,10 @@ switch ($parametros[0]) {
             }
             break;
         }
-
+        case 'perfil':{
+                $profesionales->obtenerPerfil($parametros[1]);
+            
+        }
     default:
         echo ('Ud. eligio ' . $action);
         break;

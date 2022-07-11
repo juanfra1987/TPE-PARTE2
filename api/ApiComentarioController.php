@@ -22,10 +22,12 @@ class ApiComentarioController
             ($pass == '12345'));
     }
 
-    function obtenerComentarios($params = [])
+    function obtenerComentarios($params)
     {
         if (!empty($params)) {
             $id = $params[':id'];
+            var_dump($id);
+            die;
             $comentarios = $this->model->obtenerComentarios($id);
             $this->view->response($comentarios, "200");
         } else {
@@ -33,14 +35,13 @@ class ApiComentarioController
         }
     }
 
-    function crearTarea()
+    function crearComentario()
     {
         $datos = $this->getData();
-        $titulo = $datos->titulo;
-        $descripcion = $datos->descripcion;
-        $prioridad = $datos->prioridad;
+        $detalle = $datos->detalle;
+        $puntaje = $datos->puntaje;
 
-        $this->model->registrar($titulo, $descripcion, $prioridad);
+        $this->model->comentar($detalle, $puntaje);
 
         $this->view->response("agregado satisfactoriamente", "200");
     }
