@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <title>Home</title>
 </head>
 
@@ -21,11 +20,11 @@
         <h2>{$consulta->dias_atencion}</h2>
         <h3>{$consulta->telefono}</h3>
     </div>
-    {include file="template/vue/comentarios.tpl"}
+
+     {include file="template/vue/comentarios.tpl"} 
     <form id="form-tarea" action="{$BASE_URL}agregar" method="post">
         <label>Título: <input type="text" name="detalle"></label></p>
         <label>Descripcion: <number name="puntaje" cols="50" rows="10"></number></label></p>
         <input type="submit">                      
     </form>      
 </div>
-</html>

@@ -1,3 +1,4 @@
+
 {literal}
 <div id="app">
     <h3>{{titulo}}</h3>
@@ -7,6 +8,5 @@
        </li> 
     </ul>
 </div>
-<script src="js/comentarios.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 {/literal}
+<script src="{$BASE_URL}js/comentarios.js"></script>

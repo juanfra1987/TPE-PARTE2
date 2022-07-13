@@ -6,8 +6,6 @@ class ComentarioModel extends Model{
    
     function obtenerComentarios($id){
         $conexion = $this->getConexion();
-        var_dump($id);
-        die;
         $peticion = 'select * from comentario WHERE id_profesional_fk = ?';
         $sentencia = $conexion->prepare($peticion);
         $sentencia->execute([$id]);

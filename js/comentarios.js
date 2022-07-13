@@ -6,8 +6,8 @@ const app = new Vue({
     }
 })
 
-function obtenerComentarios() {
-    fetch('api/obtenerComentarios')
+function obtenerComentarios(id) {
+    fetch('api/profesional/comentario/'+8 )
     .then(response => response.json())
     .then(comentarios => {
         app.comentarios = comentarios; // similar a $this->smarty->assign("tasks", $tasks)
