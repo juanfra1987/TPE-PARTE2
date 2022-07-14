@@ -26,8 +26,6 @@ class ApiComentarioController
     {
         if (!empty($params)) {
             $id = $params[':id'];
-            var_dump($id);
-            die;
             $comentarios = $this->model->obtenerComentarios($id);
             $this->view->response($comentarios, "200");
         } else {
