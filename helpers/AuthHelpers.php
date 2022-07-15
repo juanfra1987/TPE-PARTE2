@@ -12,11 +12,11 @@ class AuthHelpers
         }
     }
 
-    function loguearUsuario($nombre,$permiso)
+    function loguearUsuario($nombre,$permiso,$idUsuario)
     {    
         $_SESSION["username"] = $nombre;   
         $_SESSION["permiso"] = $permiso;
-    
+        $_SESSION["idUsuario"] = $idUsuario;
     }
 
     //devuelve si el usuario esta logueado o no
@@ -40,6 +40,10 @@ class AuthHelpers
     function cerrarSession()
     {
        session_unset();
+    }
+
+    function obtenerIdUsuario(){
+        return $_SESSION["idUsuario"];
     }
     
 }

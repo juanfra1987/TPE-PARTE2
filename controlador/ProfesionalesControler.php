@@ -70,11 +70,9 @@ class ProfesionalesControlador
     // obtiene el perfil del profesional por el Id
    
     function obtenerPerfil($id){
-       
+       $idUsuario=$this->logueado->obtenerIdUsuario();
         $consulta = $this->modeloProf->consultarProfesionalEspec($id); 
-        $this->vistaProf->renderMostrarPerfilProf($consulta);
+        $this->vistaProf->renderMostrarPerfilProf($consulta,$idUsuario);
 
     }
-
-
 }

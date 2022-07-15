@@ -8,10 +8,10 @@ require_once 'controlador/EspecialidadesControler.php';
 require_once 'controlador/homeControler.php';
 
 $logueado = new AuthHelpers();
-$permiso= new AuthHelpers();
+$permiso = new AuthHelpers();
 $registro = new UsuariosControlador();
 $profesionales = new ProfesionalesControlador();
-$usuarios = new UsuariosControlador($logueado,$permiso);
+$usuarios = new UsuariosControlador($logueado, $permiso);
 $especialidades = new EspecialidadesControlador();
 $home = new homeControlador();
 
@@ -35,7 +35,7 @@ switch ($parametros[0]) {
         break;
     case 'usuarios':
         $registro->mostrarUsuarios();
-    break;     
+        break;
     case 'logout': {
             $logueado->cerrarSession();
             $desde = $parametros[1];
@@ -49,7 +49,7 @@ switch ($parametros[0]) {
                 case 'especialidades':
                     $especialidades->mostrarEspecialidades();
                 default:
-                   $home->mostrarHome();
+                    $home->mostrarHome();
                     break;
             }
             break;
@@ -58,7 +58,7 @@ switch ($parametros[0]) {
             $usuarios->login();
             $permiso->esAdministrador();
             var_dump($permiso);
-            
+
             $desde = $parametros[1];
             switch ($desde) {
                 case 'doctores':
@@ -69,7 +69,7 @@ switch ($parametros[0]) {
                     break;
                 case 'especialidades':
                     $especialidades->mostrarEspecialidades();
-                    break;   
+                    break;
                 default:
                     echo "Usted no esta logueado";
                     break;
@@ -77,11 +77,11 @@ switch ($parametros[0]) {
             break;
         }
     case 'registrar': {
-        $logueado->cerrarSession();
-        $registro->mostarRegistro();
-         }
+            $logueado->cerrarSession();
+            $registro->mostarRegistro();
+        }
         break;
-    case 'registro': {   
+    case 'registro': {
             $registro->registro();
             break;
         }
@@ -98,7 +98,7 @@ switch ($parametros[0]) {
                     break;
                 default:
                 case 'usuarios':
-                    $usuarios->eliminarUsuario($parametros[2]); 
+                    $usuarios->eliminarUsuario($parametros[2]);
                     $usuarios->mostrarUsuarios();
                     break;
             }
@@ -115,7 +115,7 @@ switch ($parametros[0]) {
                     $especialidades->actualizarEspecialidad($parametros[2]);
                     break;
                 case 'usuarios':
-                    $usuarios->actualizarUsuario($parametros[2]); 
+                    $usuarios->actualizarUsuario($parametros[2]);
                 default:
                     break;
             }
@@ -142,15 +142,15 @@ switch ($parametros[0]) {
                     $especialidades->obtenerDatosEspecialidad($parametros[2]);
                     break;
                 case 'usuarios':
-                    $usuarios->obtenerDatosUsuario($parametros[2]);     
+                    $usuarios->obtenerDatosUsuario($parametros[2]);
                 default:
                     break;
             }
             break;
         }
-        case 'perfil':{
-                $profesionales->obtenerPerfil($parametros[1]);
-            
+    case 'perfil': {
+            $profesionales->obtenerPerfil($parametros[1]);
+            break;
         }
     default:
         echo ('Ud. eligio ' . $action);

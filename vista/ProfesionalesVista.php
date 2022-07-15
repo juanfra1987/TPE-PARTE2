@@ -29,10 +29,11 @@ class ProfesionalesVista
         $plantilla->display('template/profesionales.tpl');
     }
 
-    function renderMostrarPerfilProf($consulta){
+    function renderMostrarPerfilProf($consulta,$idUsuario){
         $plantilla = new Smarty();
         $plantilla->assign('BASE_URL', BASE_URL);
         $plantilla->assign('consulta', $consulta);
+        $plantilla->assign('idUsuario', $idUsuario);
         $plantilla->display('template/perfilProfesional.tpl');
     }
 

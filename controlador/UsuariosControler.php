@@ -39,7 +39,7 @@ class UsuariosControlador
             $password = $_POST['contraseña'];
             $consulta = $this->modelo->obtenerUsuarioPorNombre($usuario);
             if ($this->verificarPassword($consulta, $password)) {
-                $this->helper->loguearUsuario($consulta->usuario,$consulta->id_permiso_fk);        
+                $this->helper->loguearUsuario($consulta->usuario,$consulta->id_permiso_fk,$consulta->id_usuario);        
                 return $this->helper->estaLogueado();
             }
         }  
@@ -57,9 +57,9 @@ class UsuariosControlador
                 $usuario=$_POST['usuario'];
                 $passHash = password_hash($_POST['password_usuario'], PASSWORD_DEFAULT);
                 $email=$_POST['email'];
-                $id_permiso_fk=$_POST['id_permiso_fk'];
-                $this->modelo->registrarUsuario($usuario,$passHash,$email,$id_permiso_fk);
-                $this->helper->loguearUsuario($usuario,$id_permiso_fk); 
+                $id_permiso_fk=2;
+                $idUsuario= $this->modelo->registrarUsuario($usuario,$passHash,$email,$id_permiso_fk);
+                $this->helper->loguearUsuario($usuario,$id_permiso_fk,$idUsuario); 
             }
             $this->vista->renderLogueo(); 
     } 

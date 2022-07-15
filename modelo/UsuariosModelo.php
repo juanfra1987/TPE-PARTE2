@@ -38,7 +38,8 @@ class UsuariosModel extends Model
         $conexion = $this->getConexion();
         $peticion = 'INSERT INTO usuarios (usuario, password_usuario, email, id_permiso_fk) VALUES (?,?,?,?)';
         $sentencia = $conexion->prepare($peticion);
-        $sentencia->execute([$usuario,$passhash, $email, $id_permiso_fk]); 
+        $sentencia->execute([$usuario,$passhash, $email, $id_permiso_fk]);
+        return $conexion->lastInsertId();
     }
 
     function obtenerUsuarioNombre($nombre){
