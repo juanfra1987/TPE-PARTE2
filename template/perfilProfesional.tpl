@@ -24,6 +24,7 @@
     </div>
     <input type="hidden" value="{$consulta->id_prof}" id="id_prof"> 
     {include file="template/vue/comentarios.tpl"}
+    {if ($logueado)}
     <form id="form-comentarios">
         <label>Agregar Comentario</label><br>
         <label>Comentario: <input type="text" id="detalle"></label></p>
@@ -31,5 +32,6 @@
         <input type="hidden" value="{$idUsuario}" id="id_usuario"> 
         <input type="submit">
     </form>
+    {/if}
     <script src="js/comentarios.js"></script>
 </div>

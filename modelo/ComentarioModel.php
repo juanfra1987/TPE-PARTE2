@@ -15,6 +15,13 @@ class ComentarioModel extends Model
         return $comentarios;
     }
 
+    function eliminarComentario($id){
+        $conexion = $this->getConexion();
+        $peticion = "DELETE FROM comentario WHERE id = ?";
+        $sentencia = $conexion->prepare($peticion);
+        $sentencia->execute([$id]);
+    }      
+
     function comentar($detalle,$puntaje,$idUsuario,$idProf)
     {
         $conexion = $this->getConexion();

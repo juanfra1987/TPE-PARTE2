@@ -5,7 +5,7 @@ let app = new Vue({
         comentarios: []
     },
     methods: {
-        obtenerComentarios: function() {
+        obtenerComentarios: function () {
             obtenerComentarios();
         }
     }
@@ -13,7 +13,7 @@ let app = new Vue({
 
 
 function obtenerComentarios() {
-    let id=document.getElementById("id_prof").value;
+    let id = document.getElementById("id_prof").value;
     fetch('api/profesional/comentario/' + id)
         .then(response => response.json())
         .then(comentarios => {
@@ -25,7 +25,7 @@ function obtenerComentarios() {
 obtenerComentarios();
 
 
-document.querySelector("#form-comentarios").addEventListener('submit', (e)=>agregarComentario(e)); 
+document.querySelector("#form-comentarios").addEventListener('submit', (e) => agregarComentario(e));
 
 function agregarComentario(e) {
     e.preventDefault();
@@ -39,11 +39,31 @@ function agregarComentario(e) {
     }
 
     fetch('api/profesional/comentario', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.text())
+        .then(response => {
+            console.log(response);
+            obtenerComentarios();
         })
-        .then(response=>response.text())
+        .catch(error => console.log(error));
+
+}
+
+document.querySelector("#formDelComentario").addEventListener('submit', (e) => eliminarComentario(e));
+
+function eliminarComentario(e) {
+    e.preventDefault();
+    let id = document.getElementById("id_comentario").value;
+    console.log(id);
+    fetch('api/profesional/comentario/' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.text())
         .then(response => {
             console.log(response);
             obtenerComentarios();

@@ -22,7 +22,7 @@ class ApiComentarioController
             ($pass == '12345'));
     }
 
-    function obtenerComentarios($params=[])
+    function obtenerComentarios($params = [])
     {
         if (!empty($params)) {
             $id = $params[':id'];
@@ -37,14 +37,20 @@ class ApiComentarioController
     {
 
         $datos = $this->getData();
-        $idUsuario=$datos->id_usuario;
-        $idProf=$datos->id_prof;
+        $idUsuario = $datos->id_usuario;
+        $idProf = $datos->id_prof;
         $detalle = $datos->detalle;
         $puntaje = $datos->puntaje;
 
-        $this->model->comentar($detalle,$puntaje,$idUsuario,$idProf);
+        $this->model->comentar($detalle, $puntaje, $idUsuario, $idProf);
 
         $this->view->response("agregado satisfactoriamente", 200);
+    }
+
+    //elimina el comentario seleccionado
+    function eliminarComentario($id)
+    {
+        $this->modelo->eliminarComentario($id);
     }
 
     function getData()
