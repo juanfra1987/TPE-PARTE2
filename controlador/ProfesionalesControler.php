@@ -78,7 +78,8 @@ class ProfesionalesControlador
         }   
         $log = $this->logueado->estaLogueado();
         $consulta = $this->modeloProf->consultarProfesionalEspec($id); 
-        $this->vistaProf->renderMostrarPerfilProf($consulta,$idUsuario,$log);
+        $permiso= $this->logueado->obtenerTipoPermiso();
+        $this->vistaProf->renderMostrarPerfilProf($consulta,$idUsuario,$log,$permiso);
 
     }
 }

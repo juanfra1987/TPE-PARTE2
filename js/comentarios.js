@@ -57,7 +57,7 @@ document.querySelector("#formDelComentario").addEventListener('submit', (e) => e
 function eliminarComentario(e) {
     e.preventDefault();
     let id = document.getElementById("id_comentario").value;
-    console.log(id);
+ 
     fetch('api/profesional/comentario/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },

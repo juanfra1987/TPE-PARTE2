@@ -45,5 +45,9 @@ class AuthHelpers
     function obtenerIdUsuario(){
         return $_SESSION["idUsuario"];
     }
+
+    function obtenerTipoPermiso(){
+        return $_SESSION["permiso"];
+    }
     
 }
